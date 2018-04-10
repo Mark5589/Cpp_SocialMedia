@@ -7,17 +7,32 @@
 
 #include <iostream>
 #include "Member.h"
+#include "INIT_member.h"
+
 using namespace std;
 
+int Member::num_Users = 0;
+
+
 Member::Member(string mem_name) {
+    num_Users++;
     name = mem_name;
     uid = id++;
 }
 
 Member::Member() {
+    num_Users++;
     uid = id++;
-
     this->name = "anonymous" + std::to_string(uid);
+}
+
+
+Member::~Member() {
+    num_Users--;
+    for(Member member : following)this->unfollow(member);
+    for(Member member : followers)member.unfollow(*this);
+//    delete this->following; // cant resolve if this is necessary
+//    delete this->followers;
 }
 
 void Member::follow(Member &mem) {
@@ -51,9 +66,6 @@ int Member::is_in_database(std::vector<Member> myVec, Member &person) {
     }
     return -1;
 }
-
-
-
 
 
 

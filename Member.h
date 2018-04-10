@@ -14,13 +14,11 @@
 #include <vector>
 
  static int id =1;
-
 class Member {
-
 
     std::string name = " ";
     int uid;
-
+    static int num_Users;
     std::vector<Member> followers;
     std::vector<Member> following;
 
@@ -42,6 +40,9 @@ public:
 
     Member(std::string mem_name);
     Member();
+    ~Member();
+    static int count(){return num_Users;}
+
 
 //    bool is_in_database(std::vector<Member> myVec, Member &person);
 };
