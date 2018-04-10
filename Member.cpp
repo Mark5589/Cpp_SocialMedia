@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include "Member.h"
-#include "INIT_member.h"
 
 using namespace std;
 
