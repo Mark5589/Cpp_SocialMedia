@@ -19,10 +19,10 @@ class Member {
     std::string name = " ";
     int uid;
     static int num_Users;
-    std::vector<Member> followers;
-    std::vector<Member> following;
+    std::vector<Member*> followers;
+    std::vector<Member*> following;
 
-    int is_in_database(std::vector<Member>, Member&);
+    int is_in_database(std::vector<Member*>, Member&);
 
 public:
 

@@ -28,16 +28,16 @@ Member::Member() {
 
 Member::~Member() {
     num_Users--;
-    for(Member member : following)this->unfollow(member);
-    for(Member member : followers)member.unfollow(*this);
+    for(Member* member : following)this->unfollow(*member);
+    for(Member* member : followers)member->unfollow(*this);
 //    delete this->following; // cant resolve if this is necessary
 //    delete this->followers;
 }
 
 void Member::follow(Member &mem) {
     if(is_in_database(following, mem) == -1){
-        following.push_back(mem);
-        mem.followers.push_back((*this));
+        following.push_back(&mem);
+        mem.followers.push_back(&(*this));
         cout<< (*this).getname() + " now following after " + mem.getname()<< endl;
     }
     else{
@@ -59,9 +59,9 @@ void Member::unfollow(Member &mem) {
 
 
 
-int Member::is_in_database(std::vector<Member> myVec, Member &person) {
+int Member::is_in_database(std::vector<Member*> myVec, Member &person) {
     for(int i = 0 ; i< myVec.size() ; i++){
-        if(myVec[i].getID() == person.getID()) return i; //(*this).getname()
+        if(myVec[i]->getID() == person.getID()) return i; //(*this).getname()
     }
     return -1;
 }
