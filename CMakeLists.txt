@@ -3,4 +3,4 @@ project(SocialMedia)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(SocialMedia main.cpp Member.cpp Member.h)
+add_executable(SocialMedia main.cpp Member.cpp Member.h )
